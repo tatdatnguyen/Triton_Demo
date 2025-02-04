@@ -5,7 +5,7 @@ This project demonstrates how to build and run a Triton server with a custom mod
 ## Prerequisites
 - **Docker** installed on your machine
 - **Python** installed with the necessary dependencies for `rest_api.py`
-- A valid **model repository** located at `/home/vbd-datnt-d/Documents/bert_triton/model_repository`
+- A valid **model repository** located at `/model_repository`
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ docker build -t tritonserver-custom .
 Start the Triton server with your custom model repository using the following command:
 ```bash
 docker run --rm -p8000:8000 -p8001:8001 -p8002:8002 \
--v /home/vbd-datnt-d/Documents/bert_triton/model_repository:/models \
+-v /path/to/bert_triton/model_repository:/models \
 tritonserver-custom \
 tritonserver --model-repository=/models
 ```
