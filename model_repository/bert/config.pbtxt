@@ -4,7 +4,7 @@ input [
   {
     name: "text_input"
     data_type: TYPE_STRING
-    dims: [ 4 ]
+    dims: [ -1 ]
   }
 ]
 output [

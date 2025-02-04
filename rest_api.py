@@ -8,14 +8,19 @@
 #     "inputs": [
 #         {
 #             "name": "text_input",
-#             "shape": [1],  # Batch size of 1
-#             "datatype": "BYTES",  # Ensure this matches TYPE_STRING
-#             "data": ["What is your name?"]
+#             "shape": [4],  # Batch size of 4
+#             "datatype": "BYTES",
+#             "data": [
+#                 "What is your name?",
+#                 "How is the weather today?",
+#                 "Tell me about Triton server.",
+#                 "hello"
+#             ]
 #         }
 #     ],
 #     "outputs": [
 #         {
-#             "name": "text_output"
+#             "name": "output"
 #         }
 #     ]
 # }
@@ -42,7 +47,7 @@ payload = {
     "inputs": [
         {
             "name": "text_input",
-            "shape": [4],  # Batch size of 3 (example)
+            "shape": [4],  # Batch size of 4 (example)
             "datatype": "BYTES",  # Ensure this matches TYPE_STRING
             "data": [
                 "What is your name?",
