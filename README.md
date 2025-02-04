@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-run:
-    docker build -t tritonserver-custom .
-then, run:
-    docker run --rm -p8000:8000 -p8001:8001 -p8002:8002 \
-    -v /home/vbd-datnt-d/Documents/bert_triton/model_repository:/models \
-    tritonserver-custom
-
-in another terminal run 
-    python rest_api.py 
-to try the rest_api.py
-=======
 # Triton Server with Custom Model Repository
 
 This project demonstrates how to build and run a Triton server with a custom model repository and test it using a REST API.
@@ -39,4 +27,15 @@ In a separate terminal, execute the REST API script to interact with the Triton 
 ```bash
 python rest_api.py
 ```
->>>>>>> 31d0d6c917da70c47f54acd569bfd7995f6a1eba
+## In Addition, Run the FastAPI:
+### Installation
+```bash
+pip install "fastapi[standard]"
+```
+
+### Run
+```bash
+uvicorn main:app --reload --port 8080
+```
+- Open http://127.0.0.1:8080/docs to use the API
+
