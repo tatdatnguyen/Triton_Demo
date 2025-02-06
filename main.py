@@ -14,6 +14,10 @@ def root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+@app.get("/kaithheathcheck")
+def leapcell_health_check():
+    return {"status": "healthy"}
+
 
 @app.post("/infer")
 def infer(request: InferRequest):
