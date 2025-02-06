@@ -7,6 +7,10 @@ app = FastAPI()
 class InferRequest(BaseModel):
     texts: list[str]    
 
+@app.get("/")
+def root():
+    return {"message": "Welcome to FastAPI"}    
+
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
