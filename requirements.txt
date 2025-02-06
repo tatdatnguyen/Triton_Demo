@@ -1,6 +1,7 @@
-numpy
-torch==1.13.1
-transformers==4.21.3
+# numpy
+# torch==1.13.1
+# transformers==4.21.3
+
 fastapi
 uvicorn[standard]
 requests
