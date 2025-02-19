@@ -1,22 +1,31 @@
-from pymongo import MongoClient
+from beanie import Document, init_beanie
+from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime
 
-# MongoDB client setup
-client = MongoClient("mongodb://localhost:27017")  
-db = client["inference_db"]  
-collection = db["inferences"]  
+class Inference(Document):
+    timestamp: datetime
+    input_texts: list[str]
+    predicted_labels: list[str]
 
-def save_inference(input_texts, predicted_labels):
-    inference_record = {
-        "timestamp": datetime.utcnow(),
-        "input_texts": input_texts,
-        "predicted_labels": predicted_labels
-    }
-    collection.insert_one(inference_record)  # Save to MongoDB
+    class Settings:
+        collection = "inferences" 
 
-def get_inferences():
-    # Retrieve inferences from the database
-    return list(collection.find({}, {"_id": 0}))  
-def drop_inferences_collection():
-    # Drop the entire collection (documents + collection itself)
-    collection.drop()
+async def init_db():
+    client = AsyncIOMotorClient("mongodb://localhost:27017")  
+    db = client["inference_db"]  
+    await init_beanie(database=db, document_models=[Inference])
+
+async def save_inference(input_texts, predicted_labels):
+    inference_record = Inference(
+        timestamp=datetime.utcnow(),
+        input_texts=input_texts,
+        predicted_labels=predicted_labels
+    )
+    await inference_record.insert()  
+
+async def get_inferences():
+    return await Inference.find_all().to_list()
+
+async def drop_inferences_collection():
+    await Inference.delete_all()
+
